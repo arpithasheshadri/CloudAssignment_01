@@ -25,6 +25,7 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.text());
+app.use(bodyParser.raw({type: '*/*'}));
 
 healthCheckRouter(app);
 
@@ -34,3 +35,9 @@ app.listen(process.env.SERVER_PORT, () => {
 });
 
 export default sequelize;
+
+// Resources used -
+// https://stackoverflow.com/questions/60647282/how-to-consume-json-in-express-js
+// https://stackoverflow.com/questions/28927836/prevent-sequelize-from-outputting-sql-to-the-console-on-execution-of-query
+// https://stackoverflow.com/questions/74018236/in-nodejs-how-to-have-individual-allowed-methods-for-each-express-enpoint
+// https://stackoverflow.com/questions/13371284/curl-command-line-url-parameters
